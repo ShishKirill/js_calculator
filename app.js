@@ -1,4 +1,4 @@
-let result = document.getElementById('result');
+const result = document.querySelector('.result');
 
 function getResult(value) {
     if (value == '=') {
@@ -10,4 +10,9 @@ function getResult(value) {
 
 function clearResult() {
     result.value = '';
+}
+
+function backspace() {
+    let exp = result.value;
+    result.value = exp.substring(0, exp.length - 1);
 }
