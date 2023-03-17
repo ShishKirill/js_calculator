@@ -22,7 +22,7 @@ function backspace() {
 
 function addNum(num) {
     if (result.value == '') {
-        result.value += num;
+        result.value = num;
     } else {
         result.value += num;
     }
