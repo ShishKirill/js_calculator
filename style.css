@@ -5,7 +5,7 @@ body {
 }
 
 .formstyle {
-    width: 250px;
+    width: 240px;
     height: 340px;
     margin: 20px auto;
     border-radius: 0.5rem;
@@ -73,7 +73,7 @@ button:hover {
 }
 
 .result {
-    width: 223px;
+    width: 220px;
     margin: 5px;
     font-size: 25px;
     padding: 5px;
