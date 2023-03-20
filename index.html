@@ -3,56 +3,55 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calculator</title>
+    <link href="./style.css" rel="stylesheet">
 </head>
 
 <body>
     <h1>JavaScript Calculator</h1>
-    <div class="formstyle">
+    <section class="wrap">
         <form class="display">
             <input type="text" class="result" readonly>
         </form>
         <div class="center">
             <table>
                 <tr>
-                    <td> <button class="btn_clear" onclick="clearResult()">C</td>
-                    <td> <button class="btn_clear" onclick="backspace()">←</td>
-                    <td> <button class="btn_sign" onclick="getResult('/')">/</td>
-                    <td> <button class="btn_sign" onclick="getResult('*')">*</td>
+                    <td> <button class="clear" onclick="clearDisplay()">C</button></td>
+                    <td colspan="2"><button class="clear" style="width: 106px" onclick="backspace()">←</button></td>
+                    <td><button class="sign" onclick="appendToDisplay('/')">/</button></td>
                 </tr>
 
                 <tr>
-                    <td> <button class="btn_num" onclick="addNum('7')">7</td>
-                    <td> <button class="btn_num" onclick="addNum('8')">8</td>
-                    <td> <button class="btn_num" onclick="addNum('9')">9</td>
-                    <td> <button class="btn_sign" onclick="getResult('-')">-</td>
+                    <td> <button class="num" onclick="appendToDisplay('7')">7</button></td>
+                    <td><button class="num" onclick="appendToDisplay('8')">8</button></td>
+                    <td><button class="num" onclick="appendToDisplay('9')">9</button></td>
+                    <td><button class="sign" onclick="appendToDisplay('*')">*</button></td>
                 </tr>
 
                 <tr>
-                    <td> <button class="btn_num" onclick="addNum('4')">4</td>
-                    <td> <button class="btn_num" onclick="addNum('5')">5</td>
-                    <td> <button class="btn_num" onclick="addNum('6')">6</td>
-                    <td> <button class="btn_sign" onclick="getResult('+')">+</td>
+                    <td> <button class="num" onclick="appendToDisplay('4')">4</button></td>
+                    <td><button class="num" onclick="appendToDisplay('5')">5</button></td>
+                    <td><button class="num" onclick="appendToDisplay('6')">6</button></td>
+                    <td><button class="sign" onclick="appendToDisplay('-')">-</button></td>
                 </tr>
 
                 <tr>
-                    <td> <button class="btn_num" onclick="addNum('1')">1</td>
-                    <td> <button class="btn_num" onclick="addNum('2')">2</td>
-                    <td> <button class="btn_num" onclick="addNum('3')">3</td>
-                    <td rowspan=2> <button class="btn_sign" style="height: 110px" onclick="getResult('=')">=</button>
-                    </td>
+                    <td><button class="num" onclick="appendToDisplay('1')">1</button></td>
+                    <td><button class="num" onclick="appendToDisplay('2')">2</button></td>
+                    <td><button class="num" onclick="appendToDisplay('3')">3</button></td>
+                    <td> <button class="sign" onclick="appendToDisplay('+')">+</button></td>
                 </tr>
+
                 <tr>
-                    <td colspan=2> <button class=" btn_num" style="width: 106px" onclick="addNum(0)">0</button>
-                    </td>
-                    <td> <button class="btn_num" onclick="addDecimal('.')">.</button></td>
+                    <td><button class="num" onclick="appendToDisplay('0')">0</button></td>
+                    <td><button class="num" onclick="addDecimal()">.</button></td>
+                    <td colspan="2"><button class="sign" style="width: 106px" onclick="calculate()">=</button></td>
                 </tr>
             </table>
-        </div>
-    </div>
+        </div><!-- end of center-->
+    </section>
     <script src="./app.js"></script>
 </body>
 
