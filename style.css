@@ -5,7 +5,7 @@ body {
 }
 
 .formstyle {
-    width: 250px;
+    width: 240px;
     height: 340px;
     margin: 20px auto;
     border-radius: 0.5rem;
@@ -13,6 +13,11 @@ body {
     text-align: center;
     box-shadow: 0 5px 3px #111;
     background-color: rgb(67, 67, 67);
+}
+
+.center {
+    display: flex;
+    justify-content: center;
 }
 
 h1 {
@@ -73,7 +78,7 @@ button:hover {
 }
 
 .result {
-    width: 223px;
+    width: 220px;
     margin: 5px;
     font-size: 25px;
     padding: 5px;
