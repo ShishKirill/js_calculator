@@ -1,76 +1,128 @@
-let display = document.querySelector(".result");
-let hasDecimal = false;
+const display1El = document.querySelector(".display-1");
+const display2El = document.querySelector(".display-2");
+const numbersEl = document.querySelectorAll(".number");
+const operationEl = document.querySelectorAll(".operation");
+const equalEl = document.querySelector(".equal");
+const clearAllEl = document.querySelector(".clear");
+const clearLastEl = document.querySelector(".backspace");
+let dis1Num = "";
+let dis2Num = "";
+let result = null;
+let lastOperation = "";
+let haveDot = false;
 
-function appendToDisplay(value) {
-    if (value === "*" || value === "/" || value === "+" || value === "-") {
-        display.value = display.value.replace(/\+|\-|\*|\//g, '') + value;
-    }
-    else {
-        display.value += value;
-    }
-}
-
-function clearDisplay() {
-    display.value = "";
-    hasDecimal = false;
-}
-
-function addDecimal() {
-    if (!hasDecimal) {
-        display.value += ".";
-        hasDecimal = true;
-    }
-}
-
-function backspace() {
-    let exp = display.value;
-    display.value = exp.substring(0, exp.length - 1);
-    hasDecimal = false;
-}
-
-function calculate() {
-    let calculation = display.value.replace(/\s/g, '');
-    let pattern = /(\d+\.?\d*)([\+\-\*\/])(\d+\.?\d*)/;
-    let match = pattern.exec(calculation);
-
-    while (match) {
-        let leftOperand = parseFloat(match[1]);
-        let operator = match[2];
-        let rightOperand = parseFloat(match[3]);
-        let result = 0;
-        switch (operator) {
-            case "+":
-                result = leftOperand + rightOperand;
-                break;
-            case "-":
-                result = leftOperand - rightOperand;
-                break;
-            case "*":
-                result = leftOperand * rightOperand;
-                break;
-            case "/":
-                result = leftOperand / rightOperand;
-                break;
+numbersEl.forEach((number) => {
+    number.addEventListener("click", (e) => {
+        if (e.target.innerText === "." && !haveDot) {
+            haveDot = true;
+        } else if (e.target.innerText === "." && haveDot) {
+            return;
         }
-        calculation = calculation.replace(match[0], result);
-        match = pattern.exec(calculation);
-    }
-    display.value = parseFloat(calculation).toFixed(6);
+        dis2Num += e.target.innerText;
+        display2El.innerText = dis2Num;
+    });
+});
+
+operationEl.forEach((operation) => {
+    operation.addEventListener("click", (e) => {
+        if (!dis2Num) return;
+        haveDot = false;
+        const operationName = e.target.innerText;
+        if (dis1Num && dis2Num && lastOperation) {
+            mathOperation();
+        } else {
+            result = parseFloat(dis2Num);
+        }
+        clearVar(operationName);
+        lastOperation = operationName;
+        console.log(result);
+    });
+});
+
+function clearVar(name = "") {
+    dis1Num += dis2Num + " " + name + " ";
+    display1El.innerText = dis1Num;
+    display2El.innerText = "";
+    dis2Num = "";
 }
 
-document.addEventListener("keydown", (event) => {
-    const key = event.key;
+function mathOperation() {
+    if (lastOperation === "x") {
+        result = parseFloat(result) * parseFloat(dis2Num);
+    } else if (lastOperation === "+") {
+        result = parseFloat(result) + parseFloat(dis2Num);
+    } else if (lastOperation === "-") {
+        result = parseFloat(result) - parseFloat(dis2Num);
+    } else if (lastOperation === "/") {
+        result = parseFloat(result) / parseFloat(dis2Num);
+    } else if (lastOperation === "%") {
+        result = parseFloat(result) % parseFloat(dis2Num);
+    }
+}
 
-    if (/\d|\.|\+|\-|\*|\//.test(key)) {
-        event.preventDefault();
-        appendToDisplay(key);
-    }
-    if (key === "Enter") {
-        event.preventDefault();
-        calculate();
-    }
-    if (key === "Backspace") {
-        event.preventDefault();
-        display.value = display.value.slice(0, -1);
-    }
+equalEl.addEventListener("click", () => {
+    if (!dis2Num || !dis1Num) return;
+    haveDot = false;
+    mathOperation();
+    clearVar();
+    display2El.innerText = result;
+    dis2Num = result;
+    dis1Num = "";
 });
+
+clearAllEl.addEventListener("click", () => {
+    dis1Num = "";
+    dis2Num = "";
+    display1El.innerText = "";
+    display2El.innerText = "";
+    result = "";
+});
+
+clearLastEl.addEventListener("click", () => {
+    display2El.innerText = "";
+    dis2Num = "";
+});
+
+window.addEventListener("keydown", (e) => {
+    if (
+        e.key === "0" ||
+        e.key === "1" ||
+        e.key === "2" ||
+        e.key === "3" ||
+        e.key === "4" ||
+        e.key === "5" ||
+        e.key === "6" ||
+        e.key === "7" ||
+        e.key === "8" ||
+        e.key === "9" ||
+        e.key === "."
+    ) {
+        clickButtonEl(e.key);
+
+    } else if (e.key === "+" || e.key === "-" || e.key === "/" || e.key === "%") {
+        clickOperation(e.key);
+    } else if (e.key === "*") {
+        clickOperation("x");
+
+    } else if (e.key == "Enter" || e.key === "=") {
+        clickEqual();
+    }
+
+});
+function clickButtonEl(key) {
+    numbersEl.forEach((button) => {
+        if (button.innerText === key) {
+            button.click();
+        }
+    });
+}
+function clickOperation(key) {
+    operationEl.forEach((operation) => {
+        if (operation.innerText === key) {
+            operation.click();
+        }
+    });
+}
+function clickEqual() {
+    equalEl.click();
+}
