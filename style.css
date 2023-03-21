@@ -1,37 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500&display=swap');
 
 * {
-    margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
-}
-
-.wrap {
-    width: 230px;
-    height: 325px;
-    margin: 50px auto;
-    border-radius: 0.3rem;
-    padding: 10px;
-    text-align: center;
-    box-shadow: 0 5px 3px #111;
-    background-color: rgb(67, 67, 67);
-}
-
-.result {
-    width: 206px;
-    margin: 5px;
-    font-size: 25px;
-    padding: 5px;
-    border: none;
-    text-align: right;
-    border-radius: 0.3rem;
-    background-color: rgb(177, 214, 177);
-}
-
-.center {
-    display: flex;
-    justify-content: center;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
 }
 
 h1 {
@@ -42,48 +15,62 @@ h1 {
     color: white;
 }
 
-.clear {
-    width: 50px;
-    height: 50px;
-    font-size: 25px;
-    margin: 1px;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 2px 2px black;
-    border-radius: 0.5rem;
-    background-color: rgb(250, 137, 100);
-    color: rgb(255, 255, 255);
-    transition: 0.2s;
+.container {
+    width: 90%;
+    max-width: 400px;
+    background-color: rgb(39, 55, 59);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 50px auto;
 }
 
-.sign {
-    width: 50px;
-    height: 50px;
-    font-size: 25px;
-    margin: 1px;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 2px 2px black;
-    border-radius: 0.5rem;
-    background-color: rgb(206, 206, 206);
-    color: rgb(255, 255, 255);
-    transition: 0.2s;
+.display {
+    background-color: rgb(182, 182, 182);
+    height: 100px;
+    width: 100%;
+    text-align: right;
+    padding: 20px;
+    font-size: 30px;
+    position: relative;
 }
 
-.num {
-    width: 50px;
-    height: 50px;
-    font-size: 25px;
-    margin: 1px;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 2px 2px black;
-    border-radius: 0.5rem;
-    background-color: rgb(142, 142, 142);
-    color: rgb(255, 255, 255);
-    transition: 0.2s;
+.display-1 {
+    opacity: 0.4;
+    font-size: 20px;
+    height: 20px;
+    overflow: hidden;
 }
 
-button:hover {
-    opacity: 0.75;
+.temp-result {
+    position: absolute;
+    bottom: 0;
+    left: 10;
+    font-size: 20px;
+    opacity: 0.3;
+}
+
+.all_button {
+    color: whitesmoke;
+    display: grid;
+    grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+}
+
+.button {
+    border: 0.5px solid rgba(92, 92, 92, 0.137);
+    display: inline-block;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(30, 43, 46);
+}
+
+.btn-0 {
+    grid-column: 1/3;
 }
